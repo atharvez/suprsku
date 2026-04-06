@@ -62,7 +62,7 @@ const FinalCTA = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="text-on-surface-variant font-medium mt-6 text-sm font-body"
           >
-            Join 500+ brands launching faster with SuprSKU.
+            Join brands to launch faster with SuprSKU.
           </motion.p>
         </div>
       </motion.div>
