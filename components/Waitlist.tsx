@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, Loader2, Sparkles, CheckCircle2 } from "lucide-react";
+import { Send, Loader2, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Waitlist = () => {
@@ -29,159 +29,109 @@ const Waitlist = () => {
   };
 
   return (
-    <section id="waitlist" className="py-24 bg-surface px-6">
+    <section id="waitlist" className="py-32 bg-slate-950 px-6 relative overflow-hidden">
+      {/* Decorative Orbs */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
+
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="max-w-5xl mx-auto bg-primary-container rounded-[2.5rem] p-12 md:p-20 relative overflow-hidden shadow-2xl"
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="max-w-5xl mx-auto glass-card rounded-[3.5rem] p-12 md:p-24 border border-white/5 relative z-10"
       >
-        {/* Animated floating sparkle */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-          className="absolute top-0 right-0 p-8 text-on-primary-container/10"
-        >
-          <Sparkles size={140} />
-        </motion.div>
-
-        {/* Ambient orbs */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-          className="absolute -bottom-16 -left-16 w-48 h-48 bg-white/10 rounded-full blur-2xl"
-        />
-
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-primary text-xs font-bold uppercase tracking-wider"
-            >
-              <Sparkles size={14} /> Early Access
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-on-primary-container leading-tight font-headline"
-            >
-              Join the future of food compliance.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg text-on-primary-container/80 font-body leading-relaxed"
-            >
-              We're currently in private beta, helping select brands launch their labels faultlessly. Join the waitlist to be first in line for our public launch.
-            </motion.p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="space-y-10 text-center lg:text-left">
+             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-widest font-headline">
+               <Sparkles size={14} className="animate-spin-slow" /> Beta Program
+             </div>
+             
+             <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] font-headline tracking-tight">
+               Be the first to fuel the <span className="text-emerald-400">next Gen</span> of compliance.
+             </h2>
+             
+             <p className="text-lg text-slate-400 font-body leading-relaxed max-w-lg mx-auto lg:mx-0">
+               We’re selectively onboarding high-growth D2C brands to our private beta. Join the list to secure your priority access to the SuprSKU engine.
+             </p>
           </div>
 
-          <AnimatePresence mode="wait">
-            {status === "success" ? (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{ duration: 0.4, ease: "backOut" }}
-                className="bg-white p-8 rounded-2xl shadow-xl text-center"
-              >
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                  className="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-6"
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="bg-emerald-500/10 border border-emerald-500/20 p-12 rounded-3xl text-center backdrop-blur-xl"
                 >
-                  <CheckCircle2 className="text-primary" size={32} />
-                </motion.div>
-                <h3 className="text-2xl font-bold text-on-surface mb-2 font-headline">You're on the list!</h3>
-                <p className="text-on-surface-variant font-body mb-6">We'll reach out as soon as a spot opens up.</p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="text-primary font-bold hover:underline font-headline"
-                >
-                  Join with another email
-                </button>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="bg-white p-8 rounded-2xl shadow-xl space-y-6"
-              >
-                <div>
-                  <label htmlFor="w-name" className="block text-sm font-bold text-on-surface mb-2 font-headline">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="w-name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-surface-container-high border-0 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/30 transition-all font-body text-on-surface outline-none"
-                    placeholder="Jane Smith"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="w-email" className="block text-sm font-bold text-on-surface mb-2 font-headline">
-                    Work Email
-                  </label>
-                  <input
-                    type="email"
-                    id="w-email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-surface-container-high border-0 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/30 transition-all font-body text-on-surface outline-none"
-                    placeholder="jane@brand.com"
-                  />
-                </div>
-
-                {status === "error" && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-error text-sm font-medium"
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(16,185,129,0.3)]"
                   >
-                    Please try again later.
-                  </motion.p>
-                )}
-
-                <motion.button
-                  type="submit"
-                  disabled={status === "loading"}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full bg-on-surface text-white py-4 rounded-xl font-bold hover:brightness-110 transition-all text-lg flex items-center justify-center gap-2 group disabled:opacity-70 font-headline"
+                    <CheckCircle2 className="text-slate-950" size={40} />
+                  </motion.div>
+                  <h3 className="text-3xl font-bold text-white mb-3 font-headline">Registration Confirmed</h3>
+                  <p className="text-slate-400 font-body">Verification email is on its way. Check your inbox.</p>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  onSubmit={handleSubmit}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-6"
                 >
-                  {status === "loading" ? (
-                    <Loader2 className="animate-spin" size={24} />
-                  ) : (
-                    <>
-                      Join Waitlist
-                      <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </>
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-bold text-slate-400 uppercase tracking-widest font-headline ml-1">Full Name</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-slate-900/50 border border-white/5 rounded-2xl px-6 py-5 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 transition-all font-body text-white outline-none placeholder:text-slate-600"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-bold text-slate-400 uppercase tracking-widest font-headline ml-1">Work Email</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-slate-900/50 border border-white/5 rounded-2xl px-6 py-5 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 transition-all font-body text-white outline-none placeholder:text-slate-600"
+                      placeholder="name@company.com"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="text-rose-500 text-sm font-semibold ml-1">There was an issue. Please try again.</p>
                   )}
-                </motion.button>
-                <p className="text-[10px] text-center text-on-surface-variant font-body">
-                  By joining, you agree to our terms and privacy policy.
-                </p>
-              </motion.form>
-            )}
-          </AnimatePresence>
+
+                  <motion.button
+                    type="submit"
+                    disabled={status === "loading"}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-5 rounded-2xl font-extrabold text-lg transition-all flex items-center justify-center gap-3 group disabled:opacity-50 font-headline mt-10 shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+                  >
+                    {status === "loading" ? (
+                      <Loader2 className="animate-spin" size={24} />
+                    ) : (
+                      <>
+                        Secure Priority Access
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </motion.button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </motion.div>
     </section>

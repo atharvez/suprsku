@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
+import ProductGuide from "@/components/ProductGuide";
 import TrustBar from "@/components/TrustBar";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
@@ -10,11 +10,12 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-slate-950">
       <Navbar />
-      <div className="pt-24 space-y-24">
+      <div>
         <Hero />
-        <Features />
+        {/*<TrustBar />*/}
+        <ProductGuide />
         <Waitlist />
         <FAQ />
         <ContactForm />

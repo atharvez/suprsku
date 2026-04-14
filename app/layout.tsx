@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${plusJakartaSans.variable} ${inter.variable} font-body bg-surface text-on-surface antialiased min-h-full`}>
+      <body className={`${plusJakartaSans.variable} ${inter.variable} font-body bg-slate-950 text-white antialiased min-h-full`}>
         {children}
       </body>
     </html>
