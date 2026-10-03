@@ -1,8 +1,8 @@
-﻿# Suprsku ðŸ›ï¸
+# Suprsku
 
 A premium sneaker and streetwear marketplace concept.
 
-**Live Demo:** [suprsku.vercel.app](https://suprsku.vercel.app)
+**Live:** [suprsku.vercel.app](https://suprsku.vercel.app)
 
 ## Tech Stack
 
@@ -16,11 +16,11 @@ A premium sneaker and streetwear marketplace concept.
 
 ## Features
 
-- ðŸ‘Ÿ **Curated Drops** â€” Browse sneakers with filtering by brand/size/colorway
-- ðŸ” **Smart Search** â€” Full-text search across catalogue
-- ðŸ›’ **Cart & Checkout** â€” Seamless purchase experience
-- â¤ï¸ **Wishlist** â€” Save items for later
-- ðŸ“± **Mobile-First** â€” Designed for any screen
+- Curated drops -- browse sneakers with filtering by brand/size/colorway
+- Smart search -- full-text search across catalogue
+- Cart and checkout -- seamless purchase experience
+- Wishlist -- save items for later
+- Mobile-first -- designed for any screen
 
 ## Getting Started
 
@@ -34,4 +34,4 @@ npm run dev
 
 ## License
 
-MIT Â© [Atharva Desai](https://github.com/atharvez)
+MIT (c) Atharva Desai
